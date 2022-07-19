@@ -34,13 +34,22 @@ def parse_args():
 def cos_approx(x, accuracy=10):
     """This is a function that approximates cos(x) by summing the first n (accuracy) terms of the Taylor series expansion"""
     Taylor_Series_Exp = [(((-1)**n)/(factorial(2*n)))*(x**(2*n)) for n in range(accuracy + 1)]
-
+    
     return sum(Taylor_Series_Exp)
 
 
 
 # Will only run if this is run from command line as opposed to imported
 if __name__ == '__main__':  # main code block
+    
+    args = parse_args()
+    print(args)
+    
+    x = args.input[0] 
+    print(x)
+    
+    accuracy = args.npts
+    print(accuracy)
 
     args = parse_args()
     print(args)
@@ -57,8 +66,6 @@ if __name__ == '__main__':  # main code block
         comparison = value > close_to - eta and value < close_to + eta
         return comparison 
     
-
-   
     approx =cos_approx(x,accuracy)
     print("cos_approx(x) = ", approx)
     
@@ -82,4 +89,4 @@ if __name__ == '__main__':  # main code block
     assert is_close(cos_approx(pi),-1), "cos(pi) is not -1"
 
     assert is_close(cos_approx(pi),-1), "cos(pi) is not -1"
-
+    #assert is_close(cos_approx(x),np.cos(x))
